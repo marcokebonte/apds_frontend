@@ -1,0 +1,104 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  /* Shared styles for forms and buttons */
+  
+  form {
+    margin: 1rem 0;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    display: block;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  
+  .error-message {
+    color: #ff0000;
+    font-weight: bold;
+  }
+  
+  /* Specific styles for login and signup pages */
+  
+  .login-form,
+  .signup-form {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Specific styles for post list and form on the home page */
+  
+  .post-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .post-list li {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Specific styles for navigation bar */
+  
+  .navbar {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+  
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 1rem;
+  }
+  
+  /* Styling for navigation bar links */
+  
+  .navbar a:hover {
+    text-decoration: underline;
+  }
+  
+  

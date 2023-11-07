@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Angular App</title>
+  <link rel="stylesheet" href="home.component.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to Your Angular App</h1>
+  </header>
+  <main>
+    <section class="post-form">
+      <h2>Add a New Post</h2>
+      <form (submit)="addNewPost($event)">
+        <label for="title">Title:</label>
+        <input type="text" id="title" [(ngModel)]= "title" required>
+        
+        <label for="description">Description:</label>
+        <textarea id="description" [(ngModel)]="description"></textarea>
+        
+        <label for="department">Department:</label>
+        <input type="text" id="department" [(ngModel)]="department" required>
+        
+        <button type="submit">Add Post</button>
+      </form>
+      <div *ngIf="hasError" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </section>
+
+    <section class="post-list">
+      <h2>Posts</h2>
+      <ul>
+        <li *ngFor="let post of posts">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.description }}</p>
+          <p>Department: {{ post.department }}</p>
+          <button (click)="deletePost(post._id)">Delete</button>
+        </li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
+

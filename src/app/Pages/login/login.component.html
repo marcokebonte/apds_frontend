@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Your Angular App</title>
+  <link rel="stylesheet" href="login.component.css">
+</head>
+<body>
+  <main>
+    <section class="login-form">
+      <h2>Login</h2>
+      <form (submit)="onSubmit($event)">
+        <label for="username">Username:</label>
+        <input type="text" id="username" [(ngModel)]="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="password" required>
+        
+        <button type="submit">Login</button>
+      </form>
+      <div *ngIf="hasError" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </section>
+  </main>
+</body>
+</html>
