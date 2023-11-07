@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - Your Angular App</title>
+  <title>Sign Up</title>
   <link rel="stylesheet" href="signup.component.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
       <h2>Sign Up</h2>
       <form (submit)="onSubmit($event)">
         <label for="username">Username:</label>
-        <input type="text" id="username" [(ngModel)]="username" required>
+        <input type="text" id="username" [(ngModel)]= "username" required>
         
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" [(ngModel)]="firstName" required>
