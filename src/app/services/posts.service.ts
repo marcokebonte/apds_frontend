@@ -7,7 +7,7 @@ import { AuthServiceService } from './auth-service.service'
 })
 export class PostsService {
 
-  private readonly BASE_URL = 'http://localhost:53893/api/posts';
+  private readonly BASE_URL = 'http://localhost:3000/api/posts';
 
   constructor(private http: HttpClient, private auth: AuthServiceService) {}
 
@@ -37,6 +37,7 @@ export class PostsService {
         }
       ); 
     }
+
 
     delete(id: string) {
       return this.http.delete('${this.BASE_URL}/${id}', {

@@ -7,8 +7,9 @@ import { HttpClient } from '@angular/common/http'
 export class AuthServiceService {
 
   //private token!: string;
-  private readonly BASE_URL = 'http://localhost:53893/';
+  private readonly BASE_URL = 'http://localhost:3000/api/users';
 
+  
   constructor(private http: HttpClient) { }
 
 
@@ -31,7 +32,7 @@ export class AuthServiceService {
     lastName: string,
     password: string
     ) {
-      return this.http.post('${this.BASE_URL}/api/auth',{
+      return this.http.post(`${this.BASE_URL}/api/user`,{
         username,
         firstName,
         lastName,
@@ -42,7 +43,7 @@ export class AuthServiceService {
 
 
   login (username: string, password: string){
-    return this.http.post('${this.BASE_URL}/api/auth', {username,password});
+    return this.http.post(`${this.BASE_URL}/api/auth`, {username,password});
     }
   
 

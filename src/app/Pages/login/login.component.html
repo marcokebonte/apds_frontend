@@ -10,18 +10,20 @@
   <main>
     <section class="login-form">
       <h2>Login</h2>
-      <form (submit)="onSubmit($event)">
-        <label for="username">Username:</label>
-        <input type="text" id="username" [(ngModel)]="username" required>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" [(ngModel)]="password" required>
-        
-        <button type="submit">Login</button>
-      </form>
-      <div *ngIf="hasError" class="error-message">
-        {{ errorMessage }}
-      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <label for="username">Username:</label>
+  <input type="text" id="username" formControlName="username" required>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" formControlName="password" required>
+
+  <button type="submit">Login</button>
+</form>
+<div *ngIf="hasError" class="error-message">
+  {{ errorMessage }}
+</div>
+
     </section>
   </main>
 </body>

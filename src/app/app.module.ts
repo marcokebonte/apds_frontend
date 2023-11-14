@@ -10,7 +10,8 @@ import { SignupComponent } from './Pages/signup/signup.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { ErrorComponent } from './common/error/error.component';
 import { PostsComponent } from './common/posts/posts.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth/auth.interceptor';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule, 
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

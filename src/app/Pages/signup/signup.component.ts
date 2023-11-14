@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl} from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthServiceService } from 'src/app/services/auth-service.service'
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-signup',
@@ -9,63 +9,61 @@ import { AuthServiceService } from 'src/app/services/auth-service.service'
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-username = new FormControl('');
-firstName = new FormControl('');
-lastName = new FormControl('');
-password = new FormControl('');
-confirmPassword = new FormControl('');
-hasError = false;
-errorMessage = '';
+  signupForm = new FormGroup({
+    username: new FormControl('', Validators.required),
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    confirmPassword: new FormControl('', Validators.required),
+  });
+
+  hasError = false;
+  errorMessage = '';
+
+  constructor(private router: Router, private auth: AuthServiceService) {}
+
+  ngOnInit(): void {}
 
 
 
+  onSubmit(): void {
+    console.log('Form Submitted'); // Debugging line
+  
+    this.hasError = false;
+  
+    if (this.signupForm.invalid) {
+      this.hasError = true;
+      this.errorMessage = 'All fields are required';
+      return;
+    }
+  
+    if (this.signupForm.value.password !== this.signupForm.value.confirmPassword) {
+      this.hasError = true;
+      this.errorMessage = 'Passwords do not match';
+      return;
+    }
+  
+    // Clear any previous error
+    this.errorMessage = '';
+  
+    // Send http request to create user
+    const { username, firstName, lastName, password } = this.signupForm.value;
+  
+    if (username && firstName && lastName && password) {
+      this.auth.signup(username, firstName, lastName, password)
+  .subscribe({
+    next: () => {
+      console.log('User successfully created');
+      this.router.navigate(['/login']);
+    },
+    error: (err) => {
+      console.error('Error creating account:', err);
+      this.router.navigate(['/login']); // Navigate to login even on error
+    }
+  });
 
-constructor(private router: Router, private auth: AuthServiceService){}
-
-
-ngOnInit(): void{};
-
-onsubmit(e: Event){
-  //Set Defaults
-  e.preventDefault();
-  this.hasError = false;
-
-  //Check fields for values
-  if(
-    !this.username.value || 
-    !this.firstName.value ||
-    !this.lastName.value ||
-    !this.password.value ||
-    !this.confirmPassword.value
-  ){
-    this.hasError = true;
-    this.errorMessage = 'Passwords do not match';
-    return;
+    } 
   }
+  
 
-  //Check if passwords match
-  if (this.password.value !== this.confirmPassword.value){
-    this.hasError = true;
-    this.errorMessage = 'Passwords do not match';
-    return;
-  }
-
-  //Send http request to create user
-
-  this.auth
-  .signup(this.username.value,
-    this.firstName.value,
-    this.lastName.value,
-    this.password.value
-    )
-    .subscribe({
-      next: (v) => {
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        this.hasError = true;
-        this.errorMessage = 'Error creating account, please check your details';
-      }
-    });
-}
 }

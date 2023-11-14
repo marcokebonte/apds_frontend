@@ -10,29 +10,28 @@
   <main>
     <section class="signup-form">
       <h2>Sign Up</h2>
-      <form (submit)="onSubmit($event)">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <label for="username">Username:</label>
-        <input type="text" id="username" [(ngModel)]= "username" required>
+        <input type="text" id="username" formControlName="username" required>
         
         <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" [(ngModel)]="firstName" required>
+        <input type="text" id="firstName" formControlName="firstName" required>
         
         <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" [(ngModel)]="lastName" required>
+        <input type="text" id="lastName" formControlName="lastName" required>
         
         <label for="password">Password:</label>
-        <input type="password" id="password" [(ngModel)]="password" required>
+        <input type="password" id="password" formControlName="password" required>
         
         <label for="confirmPassword">Confirm Password:</label>
-        <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" required>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword" required>
         
         <button type="submit">Sign Up</button>
       </form>
       <div *ngIf="hasError" class="error-message">
         {{ errorMessage }}
-      </div>
+      </div>      
     </section>
   </main>
 </body>
 </html>
-
